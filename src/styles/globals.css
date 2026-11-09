@@ -1,0 +1,917 @@
+/* Disable dark mode - force light mode only */
+@custom-variant dark (&:is(.dark *));
+
+/* :root:root (not :root) so the Mercy Home tokens win however the theme
+ * files are ordered. Figma Make injects its own shadcn theme (mirrored in
+ * default_theme.css: --primary #030213, --input transparent, ...) AFTER
+ * this file; with equal specificity the later file won, which removed
+ * Input/Select borders and turned primary navy. Same element, higher
+ * specificity: no !important needed, and nothing changes locally. */
+:root:root {
+  --font-size: 16px;
+
+  /* Brand Colors - MERCY HOME (PRESERVE) */
+  --color-brand-primary: #145f33; /* Mercy Green */
+  --color-brand-secondary: #a82031; /* Action Maroon */
+  --color-brand-tertiary: #183242; /* Deep Slate */
+  --color-brand-accent: #e86c24; /* Hope Orange */
+  --color-link-blue: #005ea2;
+  --color-bg-neutral: #f9fafb;
+  --color-neutral-900: #22282e;
+  --color-text-main: #212529;
+  --color-text-muted: #54595f;
+  --color-white: #ffffff;
+
+  /* === SLDS 2 GLOBAL STYLING HOOKS === */
+
+  /* Colors - Neutral Palette */
+  --slds-g-color-neutral-base-100: #ffffff;
+  --slds-g-color-neutral-base-95: #fafaf9;
+  --slds-g-color-neutral-base-90: #f3f2f2;
+  --slds-g-color-neutral-base-80: #ecebea;
+  --slds-g-color-neutral-base-70: #dddbda;
+  --slds-g-color-neutral-base-60: #c9c7c5;
+  --slds-g-color-neutral-base-50: #706e6b;
+  --slds-g-color-neutral-base-40: #514f4d;
+  --slds-g-color-neutral-base-30: #3e3e3c;
+  --slds-g-color-neutral-base-10: #080707;
+
+  /* Colors - Brand (Salesforce Blue - for reference) */
+  --slds-g-color-brand-base-10: #001639;
+  --slds-g-color-brand-base-20: #032d60;
+  --slds-g-color-brand-base-30: #014486;
+  --slds-g-color-brand-base-40: #0176d3;
+  --slds-g-color-brand-base-50: #0070d2;
+  --slds-g-color-brand-base-60: #1b96ff;
+
+  /* Colors - Success */
+  --slds-g-color-success-base-10: #071b12;
+  --slds-g-color-success-base-50: #2e844a;
+  --slds-g-color-success-base-60: #45c65a;
+
+  /* Colors - Warning */
+  --slds-g-color-warning-base-10: #4a2413;
+  --slds-g-color-warning-base-50: #b28500;
+  --slds-g-color-warning-base-60: #fed35a;
+  --slds-g-color-warning-base-70: #fef8e6;
+
+  /* Colors - Error/Destructive */
+  --slds-g-color-error-base-10: #2f030a;
+  --slds-g-color-error-base-50: #ba0517;
+  --slds-g-color-error-base-60: #ea001e;
+
+  /* Borders */
+  --slds-g-color-border-base-1: #dddbda;
+  --slds-g-color-border-base-2: #c9c7c5;
+  --slds-g-color-border-base-3: #ecebea;
+  --slds-g-color-border-base-4: #f3f2f2;
+
+  /* Text Colors */
+  --slds-g-color-text-default: #080707;
+  --slds-g-color-text-weak: #706e6b;
+  --slds-g-color-text-placeholder: #c9c7c5;
+  --slds-g-color-text-inverse: #ffffff;
+  --slds-g-color-text-link: #014486;
+  --slds-g-color-text-link-hover: #032d60;
+
+  /* Background Colors */
+  --slds-g-color-background-base: #ffffff;
+  --slds-g-color-background-alt: #fafaf9;
+  --slds-g-color-background-alt-2: #f3f2f2;
+  --slds-g-color-background-row-hover: #f3f2f2;
+  --slds-g-color-background-row-selected: #e8f4f9;
+
+  /* Spacing Scale */
+  --slds-c-spacing-xxx-small: 0.125rem; /* 2px */
+  --slds-c-spacing-xx-small: 0.25rem; /* 4px */
+  --slds-c-spacing-x-small: 0.5rem; /* 8px */
+  --slds-c-spacing-small: 0.75rem; /* 12px */
+  --slds-c-spacing-medium: 1rem; /* 16px */
+  --slds-c-spacing-large: 1.5rem; /* 24px */
+  --slds-c-spacing-x-large: 2rem; /* 32px */
+  --slds-c-spacing-xx-large: 3rem; /* 48px */
+
+  /* Border Radius */
+  --slds-c-button-radius-border: 0.25rem;
+  --slds-c-card-radius-border: 0.5rem;
+  --slds-c-input-radius-border: 0.25rem;
+
+  /* Shadows */
+  --slds-g-shadow-1: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --slds-g-shadow-2: 0 2px 4px 0 rgba(0, 0, 0, 0.07);
+  --slds-g-shadow-3: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  --slds-g-shadow-4: 0 6px 12px 0 rgba(0, 0, 0, 0.15);
+
+  /* Aliases for tokens the components already reference but that had no
+     definition (they rendered transparent / inherited). Each resolves to an
+     existing token above, or to a light tint derived from one. */
+  --slds-g-color-neutral-95: var(--slds-g-color-neutral-base-95);
+  --slds-g-color-neutral-90: var(--slds-g-color-neutral-base-90);
+  --slds-g-color-background: var(--slds-g-color-background-base);
+  --slds-g-color-background-selection: var(--slds-g-color-background-row-selected);
+  --slds-g-color-background-brand-primary-lighter: #e6f2eb;
+  --slds-g-color-brand-10: #e6f2eb;
+  --slds-g-color-background-warning: var(--slds-g-color-warning-base-70);
+  --slds-g-color-background-warning-lighter: var(--slds-g-color-warning-base-70);
+  --slds-g-color-text-warning: var(--slds-g-color-warning-base-10);
+  --slds-g-color-background-success-lighter: color-mix(in srgb, var(--slds-g-color-success-base-60) 14%, #ffffff);
+  --slds-g-color-success-base-90: color-mix(in srgb, var(--slds-g-color-success-base-60) 14%, #ffffff);
+  --slds-g-color-border-success: var(--slds-g-color-success-base-50);
+  --slds-g-color-text-success: var(--slds-g-color-success-base-50);
+  --slds-g-color-background-error-lighter: color-mix(in srgb, var(--slds-g-color-error-base-60) 10%, #ffffff);
+  --slds-g-color-text-error: var(--slds-g-color-error-base-50);
+  --slds-g-color-error-base: var(--slds-g-color-error-base-50);
+  --slds-g-color-border-base: var(--slds-g-color-border-base-1);
+
+  /* Font Family */
+  --slds-g-font-family:
+    "Salesforce Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Font Sizes */
+  --slds-g-font-size-1: 0.625rem; /* 10px */
+  --slds-g-font-size-2: 0.6875rem; /* 11px */
+  --slds-g-font-size-3: 0.75rem; /* 12px */
+  --slds-g-font-size-4: 0.8125rem; /* 13px */
+  --slds-g-font-size-5: 0.875rem; /* 14px */
+  --slds-g-font-size-6: 1rem; /* 16px */
+  --slds-g-font-size-7: 1.25rem; /* 20px */
+  --slds-g-font-size-8: 1.5rem; /* 24px */
+  --slds-g-font-size-9: 1.75rem; /* 28px */
+  --slds-g-font-size-10: 2rem; /* 32px */
+
+  /* Line Heights */
+  --slds-g-line-height-text: 1.5;
+  --slds-g-line-height-heading: 1.25;
+  --slds-g-line-height-button: 1.875rem; /* 30px */
+
+  /* Tailwind Semantic Mapping */
+  --background: var(--color-bg-neutral);
+  --foreground: var(--color-text-main);
+
+  --card: var(--color-white);
+  --card-foreground: var(--color-text-main);
+
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-text-main);
+
+  --primary: var(--color-brand-primary);
+  --primary-foreground: var(--color-white);
+
+  --secondary: var(--color-brand-secondary);
+  --secondary-foreground: var(--color-white);
+
+  --muted: #f3f4f6;
+  --muted-foreground: var(--color-text-muted);
+
+  --accent: var(
+    --color-bg-neutral
+  ); /* Using neutral for hover/accent backgrounds */
+  --accent-foreground: var(--color-brand-primary);
+
+  --destructive: #d4183d;
+  --destructive-foreground: var(--color-white);
+
+  --border: #dddbda;
+  --input: #dddbda;
+  --ring: var(--color-brand-primary);
+
+  --radius: 0.25rem; /* Salesforce is boxy/slightly rounded */
+
+  --chart-1: var(--color-brand-primary);
+  --chart-2: var(--color-brand-secondary);
+  --chart-3: var(--color-brand-tertiary);
+  --chart-4: var(--color-brand-accent);
+  --chart-5: var(--color-link-blue);
+
+  --sidebar: var(--color-brand-primary);
+  --sidebar-foreground: var(--color-white);
+  --sidebar-primary: var(--color-brand-secondary);
+  --sidebar-primary-foreground: var(--color-white);
+  --sidebar-accent: rgba(255, 255, 255, 0.1);
+  --sidebar-accent-foreground: var(--color-white);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: var(--color-brand-accent);
+
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+}
+
+/* Dark mode disabled - light mode only
+.dark {
+  --background: #121212;
+  --foreground: #f3f4f6;
+  --card: #1e1e1e;
+  --card-foreground: #f3f4f6;
+  --popover: #1e1e1e;
+  --popover-foreground: #f3f4f6;
+  --primary: #145F33;
+  --primary-foreground: #ffffff;
+  --secondary: #A82031;
+  --secondary-foreground: #ffffff;
+  --muted: #27272a;
+  --muted-foreground: #9ca3af;
+  --accent: #27272a;
+  --accent-foreground: #f3f4f6;
+  --destructive: #991b1b;
+  --destructive-foreground: #ffffff;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #145F33;
+}
+*/
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: calc(var(--radius));
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(
+    --sidebar-primary-foreground
+  );
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(
+    --sidebar-accent-foreground
+  );
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Custom Brand Colors Exposed to Tailwind */
+  --color-brand-primary: #145f33;
+  --color-brand-secondary: #a82031;
+  --color-brand-tertiary: #183242;
+  --color-brand-accent: #e86c24;
+  --color-link-blue: #005ea2;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-[color:rgba(20,95,51,0.5)];
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/**
+ * Base typography.
+ */
+@layer base {
+  :where(
+    :not(:has([class*=" text-"]), :not(:has([class^="text-"])))
+  ) {
+    h1 {
+      font-size: 2rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-size: 1rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
+
+/* Explicit root height chain. index.html sets this inline, but Figma Make
+ * mounts App through its own generated entrypoint and never loads that
+ * file, so the stylesheet has to carry it. Without it, the shell's
+ * h-screen / flex-1 have no sized ancestor inside an embedded canvas. */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  font-size: var(--font-size);
+  overflow: hidden;
+}
+
+body {
+  overflow: hidden;
+}
+
+/* === RESPONSIVE LAYOUT FOUNDATION (see RESPONSIVE_ARCHITECTURE.md) ===
+ * Layout spacing that tightens at the 1024px tablet target and on phones.
+ * Built only from the SLDS spacing scale above; nothing here changes any
+ * existing class, so pages opt in by using these tokens / utilities.
+ *
+ *   ≥1025px  page 24 · section 24 · card 16 · content 16 · control 8
+ *   ≤1024px  page 16 · section 16 · card 12 · content 12 · control 8
+ *   <640px   page 12 · section 12 · card  8 · content  8 · control 4
+ */
+:root {
+  --app-page-padding: var(--slds-c-spacing-large);
+  --app-section-gap: var(--slds-c-spacing-large);
+  --app-card-gap: var(--slds-c-spacing-medium);
+  --app-content-gap: var(--slds-c-spacing-medium);
+  --app-control-gap: var(--slds-c-spacing-x-small);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --app-page-padding: var(--slds-c-spacing-medium);
+    --app-section-gap: var(--slds-c-spacing-medium);
+    --app-card-gap: var(--slds-c-spacing-small);
+    --app-content-gap: var(--slds-c-spacing-small);
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    --app-page-padding: var(--slds-c-spacing-small);
+    --app-section-gap: var(--slds-c-spacing-small);
+    --app-card-gap: var(--slds-c-spacing-x-small);
+    --app-content-gap: var(--slds-c-spacing-x-small);
+    --app-control-gap: var(--slds-c-spacing-xx-small);
+  }
+}
+
+/* Additive breakpoint. Tailwind's `lg:` starts AT 1024px, so `lg:` styles
+ * already apply at the tablet target. `desktop:` starts at 1025px, giving a
+ * way to say "desktop only, not 1024" (`desktop:grid-cols-4`) and, via
+ * `max-desktop:`, "1024 and below". Existing sm/md/lg/xl are unchanged. */
+@theme {
+  --breakpoint-desktop: 64.0625rem; /* 1025px */
+}
+
+/* The four app-* layout classes are plain classes in @layer utilities
+ * (like .slds-*), not Tailwind @utility blocks: Figma Make's build does
+ * not emit @utility, which left the navbar strip without display:flex. */
+
+/* Standard page container: fills the route area, can never be wider than
+ * it (so a wide child cannot drag the page past the viewport), and pads
+ * with the responsive page token. Use on a route's outermost scroll area. */
+@layer utilities {
+  .app-page {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: var(--app-page-padding);
+  }
+}
+
+/* Horizontal-only form of app-page, for the common split layout where a
+ * route has a header band and a separate scrolling body, each with its own
+ * vertical padding (e.g. `app-page-x py-4` / `app-page-x pb-6`). Same token:
+ * 24px on desktop (= the px-6 it replaces), 16px at 1024, 12px on phones. */
+@layer utilities {
+  .app-page-x {
+    min-width: 0;
+    padding-inline: var(--app-page-padding);
+  }
+}
+
+/* Horizontal scroll isolated to one component (dense tables, wide
+ * matrices). The page stays put; only this box scrolls. */
+@layer utilities {
+  .app-scroll-x {
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+  }
+}
+
+/* Horizontally scrolling strip of controls (sub-tabs, chips). Replaces the
+ * undefined `scrollbar-hide`: overflow stays discoverable through a thin
+ * visible scrollbar plus an edge fade on whichever side has hidden items.
+ * The fade is driven by the strip's own scroll position, so a strip that
+ * fits (no scroll range) gets no mask and renders exactly as before. */
+@layer utilities {
+  .app-scroll-strip {
+    display: flex;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    overscroll-behavior-x: contain;
+  }
+}
+
+/* A scroll container clips anything painted outside it, and strip items sit
+ * flush against its edges (full-height nav tabs, the first/last sub-tab), so
+ * a normal outside focus ring gets cut off. Draw it inside the control
+ * instead: the indicator stays fully visible, nothing is hidden. */
+.app-scroll-strip :focus-visible {
+  outline-offset: -2px;
+}
+
+@property --app-strip-fade-start {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --app-strip-fade-end {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@keyframes app-strip-fade {
+  from {
+    --app-strip-fade-start: 0px;
+    --app-strip-fade-end: 32px;
+  }
+  to {
+    --app-strip-fade-start: 32px;
+    --app-strip-fade-end: 0px;
+  }
+}
+@supports (animation-timeline: scroll()) {
+  .app-scroll-strip {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--app-strip-fade-start),
+      #000 calc(100% - var(--app-strip-fade-end)),
+      transparent 100%
+    );
+    animation: app-strip-fade linear both;
+    animation-timeline: scroll(self inline);
+  }
+}
+
+/* === SLDS 2 Typography Utility Classes === */
+@layer utilities {
+  /* Font Size Utilities - Use these instead of Tailwind text-* classes */
+  .slds-text-1 {
+    font-size: var(--slds-g-font-size-1);
+  } /* 10px - Very small, badges */
+  .slds-text-2 {
+    font-size: var(--slds-g-font-size-2);
+  } /* 11px - Small labels */
+  .slds-text-3 {
+    font-size: var(--slds-g-font-size-3);
+  } /* 12px - Labels, metadata */
+  .slds-text-4 {
+    font-size: var(--slds-g-font-size-4);
+  } /* 13px - Buttons, form inputs */
+  .slds-text-5 {
+    font-size: var(--slds-g-font-size-5);
+  } /* 14px - Body text small */
+  .slds-text-6 {
+    font-size: var(--slds-g-font-size-6);
+  } /* 16px - Body text (default) */
+  .slds-text-7 {
+    font-size: var(--slds-g-font-size-7);
+  } /* 20px - Large body, h4 */
+  .slds-text-8 {
+    font-size: var(--slds-g-font-size-8);
+  } /* 24px - h3, page titles */
+  .slds-text-9 {
+    font-size: var(--slds-g-font-size-9);
+  } /* 28px - h2 */
+  .slds-text-10 {
+    font-size: var(--slds-g-font-size-10);
+  } /* 32px - h1, hero text */
+
+  /* SLDS 2 Typography Semantic Classes */
+  .slds-text-heading-large {
+    font-size: var(--slds-g-font-size-10);
+    line-height: var(--slds-g-line-height-heading);
+    font-weight: var(--font-weight-medium);
+  }
+  .slds-text-heading-medium {
+    font-size: var(--slds-g-font-size-8);
+    line-height: var(--slds-g-line-height-heading);
+    font-weight: var(--font-weight-medium);
+  }
+  .slds-text-heading-small {
+    font-size: var(--slds-g-font-size-7);
+    line-height: var(--slds-g-line-height-heading);
+    font-weight: var(--font-weight-medium);
+  }
+  .slds-text-title {
+    font-size: var(--slds-g-font-size-8);
+    line-height: var(--slds-g-line-height-heading);
+    font-weight: var(--font-weight-medium);
+  }
+  .slds-text-body {
+    font-size: var(--slds-g-font-size-6);
+    line-height: var(--slds-g-line-height-text);
+  }
+  .slds-text-body-small {
+    font-size: var(--slds-g-font-size-5);
+    line-height: var(--slds-g-line-height-text);
+  }
+
+  /* === Mapping for common patterns === */
+  /* Page Headers */
+  .slds-page-header-title {
+    font-size: var(--slds-g-font-size-8); /* 24px */
+    font-weight: var(--font-weight-medium);
+    line-height: var(--slds-g-line-height-heading);
+  }
+
+  /* Section Headers / Card Titles */
+  .slds-section-title {
+    font-size: var(--slds-g-font-size-6); /* 16px */
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Field Labels / Form Labels */
+  .slds-form-label {
+    font-size: var(--slds-g-font-size-3); /* 12px */
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  /* Stats / Metrics Display */
+  .slds-stat-value {
+    font-size: var(--slds-g-font-size-10); /* 32px */
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  /* Button Text */
+  .slds-button-text {
+    font-size: var(--slds-g-font-size-4); /* 13px */
+    line-height: var(--slds-g-line-height-button);
+  }
+}
+
+/* Ensure Select dropdowns in dialogs appear above dialog overlay */
+[data-slot="dialog-portal"]
+  ~ [data-radix-popper-content-wrapper] {
+  z-index: 150 !important;
+}
+
+/* Print Styles for Medication Labels and Checklists */
+@media print {
+  @page {
+    size: auto;
+    margin: 0.5in;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Hide non-printable elements */
+  .print\\:hidden {
+    display: none !important;
+  }
+
+  /* Show print-only elements */
+  .print\\:block {
+    display: block !important;
+  }
+
+  /* Remove shadows and backgrounds for dialogs */
+  .print\\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  /* Ensure proper page breaks */
+  .print\\:break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Print text colors */
+  .print\\:text-black {
+    color: #000 !important;
+  }
+
+  .print\\:bg-gray-100 {
+    background-color: #f3f4f6 !important;
+  }
+
+  .print\\:bg-black {
+    background-color: #000 !important;
+  }
+
+  .print\\:bg-white {
+    background-color: #fff !important;
+  }
+
+  /* Print borders */
+  .print\\:border {
+    border-width: 1px !important;
+  }
+
+  .print\\:border-2 {
+    border-width: 2px !important;
+  }
+
+  .print\\:border-black {
+    border-color: #000 !important;
+  }
+
+  .print\\:border-gray-300 {
+    border-color: #d1d5db !important;
+  }
+
+  /* Print spacing adjustments */
+  .print\\:gap-3 {
+    gap: 0.75rem !important;
+  }
+
+  .print\\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+
+  .print\\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .print\\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Print font sizes */
+  .print\\:text-\\[8pt\\] {
+    font-size: 8pt !important;
+  }
+
+  .print\\:text-\\[9pt\\] {
+    font-size: 9pt !important;
+  }
+
+  .print\\:text-\\[10pt\\] {
+    font-size: 10pt !important;
+  }
+
+  /* Print margins and padding */
+  .print\\:mb-4 {
+    margin-bottom: 1rem !important;
+  }
+
+  .print\\:mt-6 {
+    margin-top: 1.5rem !important;
+  }
+
+  .print\\:space-y-1 > * + * {
+    margin-top: 0.25rem !important;
+  }
+
+  .print\\:font-bold {
+    font-weight: 700 !important;
+  }
+
+  /* Ensure overflow is visible in print */
+  .print\\:max-h-none {
+    max-height: none !important;
+  }
+
+  .print\\:overflow-visible {
+    overflow: visible !important;
+  }
+}
+
+/* Hide unwanted injected image from Figma Make preview system */
+.css-qm1u40.css-wc1msa,
+div[class*="css-qm1u40"],
+div[class*="css-wc1msa"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  pointer-events: none !important;
+}
+
+/* === BUTTON HOVER === */
+[class*="bh-"] {
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+.bh-filled-primary:hover {
+  background-color: #14532d !important;
+}
+.bh-filled-secondary:hover {
+  background-color: #7f1d1d !important;
+}
+.bh-filled-neutral:hover {
+  background-color: #e5e7eb !important;
+}
+.bh-filled-destructive:hover {
+  background-color: #be123c !important;
+}
+.bh-filled-accent:hover {
+  background-color: #ea580c !important;
+}
+.bh-outlined-primary:hover {
+  background-color: rgba(20, 83, 45, 0.08) !important;
+  border-color: #14532d !important;
+  color: #14532d !important;
+}
+.bh-outlined-neutral:hover {
+  background-color: rgba(107, 114, 128, 0.08) !important;
+}
+.bh-outlined-destructive:hover {
+  background-color: rgba(190, 18, 60, 0.08) !important;
+  border-color: #be123c !important;
+  color: #be123c !important;
+}
+.bh-outlined-accent:hover {
+  background-color: rgba(234, 88, 12, 0.08) !important;
+  border-color: #ea580c !important;
+  color: #ea580c !important;
+}
+.bh-ghost-primary:hover {
+  background-color: rgba(20, 83, 45, 0.08) !important;
+}
+.bh-ghost-neutral:hover {
+  background-color: rgba(107, 114, 128, 0.08) !important;
+}
+.bh-ghost-destructive:hover {
+  background-color: rgba(190, 18, 60, 0.08) !important;
+}
+.bh-soft-primary:hover {
+  background-color: rgba(20, 83, 45, 0.16) !important;
+  color: #14532d !important;
+}
+.bh-soft-success:hover {
+  background-color: rgba(21, 128, 61, 0.16) !important;
+  color: #15803d !important;
+}
+.bh-soft-warning:hover {
+  background-color: rgba(217, 119, 6, 0.22) !important;
+  color: #d97706 !important;
+}
+.bh-soft-error:hover {
+  background-color: rgba(190, 18, 60, 0.16) !important;
+  color: #be123c !important;
+}
+.bh-link:hover {
+  color: #1e40af !important;
+  text-decoration: underline !important;
+}
+.bh-segment-inactive:hover {
+  background-color: #e5e7eb !important;
+}
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/* Component Patterns page — deep-link pulse highlight.
+   Triggered by ShowcaseCard when its `id` matches the URL hash on load,
+   so the linked card is unambiguous even with several similar cards
+   visible at once. */
+@keyframes showcaseCardPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(20, 95, 51, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(20, 95, 51, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(20, 95, 51, 0);
+  }
+}
+.showcase-card-pulse {
+  animation: showcaseCardPulse 1.3s ease-out 1;
+}
+.btn--default {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: #145f33;
+  color: #ffffff;
+  border: none;
+}
+.btn--default:hover {
+  background-color: #0e4524;
+}
+.btn--outline-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: transparent;
+  color: #145f33;
+  border: 1px solid #145f33;
+}
+
+.btn--outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: transparent;
+  color: #212529;
+  border: 1px solid #dddbda;
+}
+.btn--outline:hover {
+  background-color: #f9fafb;
+  color: #145f33;
+}
+
+.btn--neutral {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: #f3f2f2;
+  color: #080707;
+  border: 1px solid #dddbda;
+}
+.btn--neutral:hover {
+  background-color: #ecebea;
+}
+.btn--outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: transparent;
+  color: #212529;
+  border: 1px solid #dddbda;
+}
+.btn--outline:hover {
+  background-color: #f9fafb;
+  color: #145f33;
+}

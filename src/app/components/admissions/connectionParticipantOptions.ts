@@ -1,0 +1,95 @@
+// Participant option lists shared by the Connection form (Add Participant)
+// and the Class Session form, so both offer the same names, roles and
+// Reason Missed values.
+
+export const reasonMissedOptions = [
+  "Youth Not Intended to Attend",
+  "Program Conflict - Excused",
+  "Sick - Excused",
+  "On Pass - Excused",
+  "Hospitalized - Excused",
+  "Youth Schedule Conflict - Excused",
+  "Suspended From Program - Excused",
+  "Youth Refusal - Unexcused",
+  "No Show - Unexcused",
+  "AWOL - Unexcused",
+  "Youth Asked To Leave - Unexcused",
+  "Other",
+  "Family Event - Youth Don't Attend",
+  "Staff Not Intended to Attend",
+  "Did not reply",
+  "Rescheduled",
+  "Supervisor reviewed note",
+  "Cancelled but not Rescheduled (Admissions)",
+  "Dropped Class/Final Class",
+  "Youth Needs to Complete Homework",
+  "Excused Program Staff Recommendation-Excused",
+  "Youth Not Home From School-Excused",
+  "Excused - In School",
+  "Excused - Work",
+];
+
+// Participant options (for filter)
+export const participantOptions = [
+  "J. Smith",
+  "M. Johnson",
+  "A. Williams",
+  "R. Davis",
+  "T. Brown",
+  "K. Lee",
+  "P. Garcia",
+  "S. Martinez",
+  "Sohan Jadhavrao",
+  "Aarete Test",
+];
+
+// Non-Constituent Roles (36 items per requirements)
+export const nonConstituentRoleOptions = [
+  "Coordinator",
+  "Director",
+  "Manager",
+  "Tutor",
+  "Advisor",
+  "Other Role",
+  "Instructor",
+  "MHBG Staff",
+  "Youth",
+  "Volunteer",
+  "School Staff",
+  "Contractor",
+  "PSO Staff",
+  "Case Manager",
+  "Masters Level Administrative Staff",
+  "Mental Health Professional",
+  "Physical Health Professional",
+  "Community Care Staff",
+  "External Constituent",
+  "Clinician",
+  "Residential Program Authorization Agent",
+  "Community Care Member",
+  "Ridgeland Tenant",
+  "Drivers Education instructor",
+  "Community Care Scholar",
+  "Friends First Mentee",
+  "Friends First Mentor",
+  "Friends First MSR",
+  "Friends First Coordinator",
+  "Nurse",
+  "Community Care Employment",
+  "Med Leader",
+  "Community Care Housing",
+  "Community Care Therapy",
+  "Community Care-Care Management",
+  "Medical Professional",
+  "Assigned Shadow Reporter",
+];
+
+// Constituent Roles (for Constituent type participants)
+export const constituentRoleOptions = [
+  "Youth",
+  "Parent/Guardian",
+  "Sibling",
+  "Family Member",
+  "MHBG Staff",
+  "Organizer",
+];

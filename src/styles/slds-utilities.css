@@ -1,0 +1,283 @@
+/**
+ * SLDS 2 Utility Classes
+ * Provides CSS Custom Property utilities for inline styles
+ */
+
+/* === SLDS FORM ELEMENT BLUEPRINT === */
+.slds-form-element {
+  position: relative;
+  margin-bottom: var(--slds-c-spacing-medium);
+}
+
+.slds-form-element__label {
+  display: inline-block;
+  color: var(--slds-g-color-text-default);
+  font-size: var(--slds-g-font-size-4);
+  margin-bottom: var(--slds-c-spacing-xx-small);
+  font-weight: 500;
+}
+
+.slds-form-element__control {
+  position: relative;
+}
+
+.slds-form-element__help {
+  font-size: var(--slds-g-font-size-3);
+  color: var(--slds-g-color-text-weak);
+  margin-top: var(--slds-c-spacing-xx-small);
+}
+
+/* === SLDS GRID SYSTEM === */
+.slds-grid {
+  display: flex;
+}
+
+.slds-wrap {
+  flex-wrap: wrap;
+}
+
+.slds-nowrap {
+  flex-wrap: nowrap;
+}
+
+.slds-gutters {
+  margin-left: calc(var(--slds-c-spacing-medium) * -0.5);
+  margin-right: calc(var(--slds-c-spacing-medium) * -0.5);
+}
+
+.slds-gutters > * {
+  padding-left: calc(var(--slds-c-spacing-medium) * 0.5);
+  padding-right: calc(var(--slds-c-spacing-medium) * 0.5);
+}
+
+.slds-col {
+  flex: 1 1 auto;
+}
+
+/* === RESPONSIVE GRID === */
+@media (max-width: 48rem) {
+  .slds-max-small-size_1-of-12 {
+    width: 8.333%;
+  }
+  .slds-max-small-size_2-of-12 {
+    width: 16.666%;
+  }
+  .slds-max-small-size_3-of-12 {
+    width: 25%;
+  }
+  .slds-max-small-size_4-of-12 {
+    width: 33.333%;
+  }
+  .slds-max-small-size_6-of-12 {
+    width: 50%;
+  }
+  .slds-max-small-size_12-of-12 {
+    width: 100%;
+  }
+}
+
+/* === SLDS CARD BLUEPRINT === */
+.slds-card {
+  background: var(--slds-g-color-background-base);
+  border: 1px solid var(--slds-g-color-border-base-1);
+  border-radius: var(--slds-c-card-radius-border);
+  box-shadow: var(--slds-g-shadow-1);
+}
+
+.slds-card__header {
+  padding: var(--slds-c-spacing-small)
+    var(--slds-c-spacing-medium);
+  background: var(--slds-g-color-background-alt);
+  border-bottom: 1px solid var(--slds-g-color-border-base-1);
+}
+
+.slds-card__body {
+  padding: var(--slds-c-spacing-medium);
+}
+
+.slds-card__footer {
+  padding: var(--slds-c-spacing-small)
+    var(--slds-c-spacing-medium);
+  background: var(--slds-g-color-background-alt);
+  border-top: 1px solid var(--slds-g-color-border-base-1);
+}
+
+/* === SLDS TEXT UTILITIES === */
+.slds-text-heading_small {
+  font-size: var(--slds-g-font-size-4);
+  font-weight: 600;
+  color: var(--slds-g-color-text-default);
+}
+
+.slds-text-heading_medium {
+  font-size: var(--slds-g-font-size-6);
+  font-weight: 600;
+  color: var(--slds-g-color-text-default);
+}
+
+.slds-text-heading_large {
+  font-size: var(--slds-g-font-size-7);
+  font-weight: 600;
+  color: var(--slds-g-color-text-default);
+}
+
+.slds-text-body_regular {
+  font-size: var(--slds-g-font-size-4);
+  color: var(--slds-g-color-text-default);
+}
+
+.slds-text-body_small {
+  font-size: var(--slds-g-font-size-3);
+  color: var(--slds-g-color-text-weak);
+}
+
+.slds-text-color_weak {
+  color: var(--slds-g-color-text-weak);
+}
+
+.slds-text-color_inverse {
+  color: var(--slds-g-color-text-inverse);
+}
+
+.slds-text-link {
+  color: var(--slds-g-color-text-link);
+  text-decoration: none;
+}
+
+.slds-text-link:hover {
+  color: var(--slds-g-color-text-link-hover);
+  text-decoration: underline;
+}
+
+/* === SLDS SPACING UTILITIES === */
+.slds-m-top_x-small {
+  margin-top: var(--slds-c-spacing-x-small);
+}
+.slds-m-top_small {
+  margin-top: var(--slds-c-spacing-small);
+}
+.slds-m-top_medium {
+  margin-top: var(--slds-c-spacing-medium);
+}
+.slds-m-top_large {
+  margin-top: var(--slds-c-spacing-large);
+}
+
+.slds-m-bottom_x-small {
+  margin-bottom: var(--slds-c-spacing-x-small);
+}
+.slds-m-bottom_small {
+  margin-bottom: var(--slds-c-spacing-small);
+}
+.slds-m-bottom_medium {
+  margin-bottom: var(--slds-c-spacing-medium);
+}
+.slds-m-bottom_large {
+  margin-bottom: var(--slds-c-spacing-large);
+}
+
+.slds-p-around_x-small {
+  padding: var(--slds-c-spacing-x-small);
+}
+.slds-p-around_small {
+  padding: var(--slds-c-spacing-small);
+}
+.slds-p-around_medium {
+  padding: var(--slds-c-spacing-medium);
+}
+.slds-p-around_large {
+  padding: var(--slds-c-spacing-large);
+}
+
+.slds-p-horizontal_x-small {
+  padding-left: var(--slds-c-spacing-x-small);
+  padding-right: var(--slds-c-spacing-x-small);
+}
+.slds-p-horizontal_small {
+  padding-left: var(--slds-c-spacing-small);
+  padding-right: var(--slds-c-spacing-small);
+}
+.slds-p-horizontal_medium {
+  padding-left: var(--slds-c-spacing-medium);
+  padding-right: var(--slds-c-spacing-medium);
+}
+.slds-p-horizontal_large {
+  padding-left: var(--slds-c-spacing-large);
+  padding-right: var(--slds-c-spacing-large);
+}
+
+.slds-p-vertical_x-small {
+  padding-top: var(--slds-c-spacing-x-small);
+  padding-bottom: var(--slds-c-spacing-x-small);
+}
+.slds-p-vertical_small {
+  padding-top: var(--slds-c-spacing-small);
+  padding-bottom: var(--slds-c-spacing-small);
+}
+.slds-p-vertical_medium {
+  padding-top: var(--slds-c-spacing-medium);
+  padding-bottom: var(--slds-c-spacing-medium);
+}
+.slds-p-vertical_large {
+  padding-top: var(--slds-c-spacing-large);
+  padding-bottom: var(--slds-c-spacing-large);
+}
+
+/* === SLDS BACKGROUND UTILITIES === */
+.slds-theme_default {
+  background: var(--slds-g-color-background-base);
+  color: var(--slds-g-color-text-default);
+}
+
+.slds-theme_alt {
+  background: var(--slds-g-color-background-alt);
+  color: var(--slds-g-color-text-default);
+}
+
+.slds-theme_shade {
+  background: var(--slds-g-color-background-alt-2);
+  color: var(--slds-g-color-text-default);
+}
+
+/* === SLDS STENCIL (LOADING STATE) === */
+.slds-stencil {
+  background: linear-gradient(
+    90deg,
+    var(--slds-g-color-neutral-base-90) 0%,
+    var(--slds-g-color-neutral-base-95) 50%,
+    var(--slds-g-color-neutral-base-90) 100%
+  );
+  background-size: 200% 100%;
+  animation: slds-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes slds-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* === SLDS BORDER UTILITIES === */
+.slds-border_top {
+  border-top: 1px solid var(--slds-g-color-border-base-1);
+}
+
+.slds-border_bottom {
+  border-bottom: 1px solid var(--slds-g-color-border-base-1);
+}
+
+.slds-border_left {
+  border-left: 1px solid var(--slds-g-color-border-base-1);
+}
+
+.slds-border_right {
+  border-right: 1px solid var(--slds-g-color-border-base-1);
+}
+
+/* === SLDS SCOPE === */
+.slds-scope {
+  font-family: var(--slds-g-font-family);
+}
